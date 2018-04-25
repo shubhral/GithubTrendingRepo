@@ -1,0 +1,112 @@
+package com.shubhral.githubtrendingrepo.service.model;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.v7.util.DiffUtil;
+
+import com.google.gson.annotations.SerializedName;
+
+/**
+ * Created by Shubhral on 4/22/2018.
+ */
+
+public class Repository implements Parcelable {
+
+    private String name;
+    private String description;
+    private String url;
+    private long id;
+    private int forks;
+    private int watchers;
+    @SerializedName("stargazers_count")
+    private int stars;
+
+    protected Repository(Parcel in) {
+        name = in.readString();
+        description = in.readString();
+        url = in.readString();
+        id = in.readLong();
+        forks = in.readInt();
+        watchers = in.readInt();
+        stars = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(url);
+        dest.writeLong(id);
+        dest.writeInt(forks);
+        dest.writeInt(watchers);
+        dest.writeInt(stars);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Repository> CREATOR = new Creator<Repository>() {
+        @Override
+        public Repository createFromParcel(Parcel in) {
+            return new Repository(in);
+        }
+
+        @Override
+        public Repository[] newArray(int size) {
+            return new Repository[size];
+        }
+    };
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public int getForks() {
+        return forks;
+    }
+
+    public int getWatchers() {
+        return watchers;
+    }
+
+    public int getStars() {
+        return stars;
+    }
+
+    public static DiffUtil.ItemCallback<Repository> DIFF_CALLBACK = new DiffUtil.ItemCallback<Repository>() {
+
+        @Override
+        public boolean areItemsTheSame(Repository oldItem, Repository newItem) {
+            return oldItem.id == newItem.id;
+        }
+
+        @Override
+        public boolean areContentsTheSame(Repository oldItem, Repository newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        if (obj == this)
+            return true;
+        Repository repository = (Repository) obj;
+        return repository.id == this.id && repository.name.equals(this.name);
+    }
+}
