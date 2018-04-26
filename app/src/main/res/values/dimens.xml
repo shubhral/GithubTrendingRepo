@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_large">12dp</dimen>
+    <dimen name="padding_medium">8dp</dimen>
+    <dimen name="text_size_medium">20sp</dimen>
+    <dimen name="card_margin">10dp</dimen>
+    <dimen name="card_radius">2dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+</resources>

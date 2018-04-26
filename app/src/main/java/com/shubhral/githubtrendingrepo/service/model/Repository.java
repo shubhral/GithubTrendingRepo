@@ -87,19 +87,6 @@ public class Repository implements Parcelable {
         return stars;
     }
 
-    public static DiffUtil.ItemCallback<Repository> DIFF_CALLBACK = new DiffUtil.ItemCallback<Repository>() {
-
-        @Override
-        public boolean areItemsTheSame(Repository oldItem, Repository newItem) {
-            return oldItem.id == newItem.id;
-        }
-
-        @Override
-        public boolean areContentsTheSame(Repository oldItem, Repository newItem) {
-            return oldItem.equals(newItem);
-        }
-    };
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null || getClass() != obj.getClass())
