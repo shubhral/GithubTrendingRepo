@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">GithubTrendingRepo</string>
     <string name="retry">retry</string>
-    <string name="url_not_found">No url found associated with this repository</string>
     <string name="topic_query">topic:%s</string>
     <string name="repo_nm">Repository Name</string>
     <string name="repo_url">Repository Url</string>
+    <string name="url_not_found">No url found associated with this repository</string>
+    <string name="forks">"%d\nForks"</string>
+    <string name="stars">%d\nStars</string>
+    <string name="watchers">%d\nWatchers</string>
+    <string name="repo_desc">Repository Description</string>
 </resources>

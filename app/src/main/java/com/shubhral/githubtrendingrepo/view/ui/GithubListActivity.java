@@ -3,6 +3,7 @@ package com.shubhral.githubtrendingrepo.view.ui;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.arch.paging.PagedList;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.shubhral.githubtrendingrepo.GithubApplication;
 import com.shubhral.githubtrendingrepo.R;
@@ -81,7 +81,9 @@ public class GithubListActivity extends AppCompatActivity implements ItemClickLi
 
     @Override
     public void onClick(String url) {
-        Toast.makeText(this, url, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, GithubDetailActivity.class);
+        intent.putExtra(AppConstants.URL, url);
+        startActivity(intent);
     }
 
     public String getTopic() {
