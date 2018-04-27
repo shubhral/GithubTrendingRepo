@@ -35,7 +35,7 @@ public class RepositoryAdapter extends PagedListAdapter<Repository, RecyclerView
             return new RepositoryViewHolder(view, itemClickListener);
         } else if (viewType == R.layout.item_network_state) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_network_state, parent, false);
-            return new NetworkStateItemViewHolder(view/*, itemClickListener*/);
+            return new NetworkStateItemViewHolder(view);
         } else {
             throw new IllegalArgumentException("Unknown View");
         }
@@ -79,56 +79,6 @@ public class RepositoryAdapter extends PagedListAdapter<Repository, RecyclerView
             return R.layout.item_network_state;
         } else {
             return R.layout.item_repository;
-        }
-    }
-
-    static class RepositoryViewHolder extends RecyclerView.ViewHolder {
-        private final TextView repositoryTitle, repositoryUrl;
-        private final ItemClickListener itemClickListener;
-
-        RepositoryViewHolder(View itemView, final ItemClickListener itemClickListener) {
-            super(itemView);
-            repositoryTitle = itemView.findViewById(R.id.tv_repo_title);
-            repositoryUrl = itemView.findViewById(R.id.tv_repo_url);
-            this.itemClickListener = itemClickListener;
-        }
-
-        void bindViews(final Repository repository) {
-            repositoryTitle.setText(repository.getName());
-            repositoryUrl.setText(repository.getUrl());
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    itemClickListener.onClick(repository.getUrl());
-                }
-            });
-        }
-    }
-
-    static class NetworkStateItemViewHolder extends RecyclerView.ViewHolder {
-
-        private final ProgressBar progressBar;
-        private final TextView errorMsg;
-
-        NetworkStateItemViewHolder(View itemView) {
-            super(itemView);
-            progressBar = itemView.findViewById(R.id.progress_bar);
-            errorMsg = itemView.findViewById(R.id.error_msg);
-        }
-
-        void bindView(NetworkState networkState) {
-            if (networkState != null && networkState.getStatus() == Status.RUNNING) {
-                progressBar.setVisibility(View.VISIBLE);
-            } else {
-                progressBar.setVisibility(View.GONE);
-            }
-
-            if (networkState != null && networkState.getStatus() == Status.FAILED) {
-                errorMsg.setVisibility(View.VISIBLE);
-                errorMsg.setText(networkState.getMsg());
-            } else {
-                errorMsg.setVisibility(View.GONE);
-            }
         }
     }
 }
