@@ -3,6 +3,7 @@ package com.shubhral.githubtrendingrepo.di;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.shubhral.githubtrendingrepo.service.repository.GithubService;
+import com.shubhral.githubtrendingrepo.util.AppConstants;
 
 import dagger.Module;
 import dagger.Provides;
@@ -26,7 +27,7 @@ public class GithubServiceModule {
     @ApplicationScope
     public Retrofit providesRetrofit(Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
+                .baseUrl(AppConstants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient)
                 .build();
