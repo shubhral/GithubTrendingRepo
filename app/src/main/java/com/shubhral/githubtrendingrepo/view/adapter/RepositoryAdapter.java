@@ -6,13 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.shubhral.githubtrendingrepo.R;
 import com.shubhral.githubtrendingrepo.service.model.Repository;
 import com.shubhral.githubtrendingrepo.service.repository.NetworkState;
-import com.shubhral.githubtrendingrepo.service.repository.Status;
+import com.shubhral.githubtrendingrepo.view.adapter.viewholder.NetworkStateItemViewHolder;
+import com.shubhral.githubtrendingrepo.view.adapter.viewholder.RepositoryViewHolder;
 import com.shubhral.githubtrendingrepo.view.callback.DiffItemCallback;
 import com.shubhral.githubtrendingrepo.view.callback.ItemClickListener;
 

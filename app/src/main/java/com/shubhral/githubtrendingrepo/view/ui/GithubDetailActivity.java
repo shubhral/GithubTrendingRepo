@@ -73,6 +73,10 @@ public class GithubDetailActivity extends AppCompatActivity {
                     } else {
                         progressBar.setVisibility(View.GONE);
                     }
+                    if (networkState != null && networkState.getStatus() == Status.FAILED) {
+                        Toast.makeText(GithubDetailActivity.this,
+                                networkState.getMsg(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }

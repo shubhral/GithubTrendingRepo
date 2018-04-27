@@ -1,4 +1,4 @@
-package com.shubhral.githubtrendingrepo.view.adapter;
+package com.shubhral.githubtrendingrepo.view.adapter.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -14,13 +14,13 @@ public class NetworkStateItemViewHolder extends RecyclerView.ViewHolder {
     private final ProgressBar progressBar;
     private final TextView errorMsg;
 
-    NetworkStateItemViewHolder(View itemView) {
+    public NetworkStateItemViewHolder(View itemView) {
         super(itemView);
         progressBar = itemView.findViewById(R.id.progress_bar);
         errorMsg = itemView.findViewById(R.id.error_msg);
     }
 
-    void bindView(NetworkState networkState) {
+    public void bindView(NetworkState networkState) {
         if (networkState != null && networkState.getStatus() == Status.RUNNING) {
             progressBar.setVisibility(View.VISIBLE);
         } else {
