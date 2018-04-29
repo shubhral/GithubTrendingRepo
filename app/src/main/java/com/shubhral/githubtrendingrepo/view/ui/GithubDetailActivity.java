@@ -23,14 +23,26 @@ import com.shubhral.githubtrendingrepo.viewmodel.GithubDetailViewModelFactory;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class GithubDetailActivity extends AppCompatActivity {
 
     @Inject
     GithubDetailViewModelFactory githubDetailViewModelFactory;
-    private GithubDetailViewModel githubDetailViewModel;
-    private TextView repositoryTitle, repositoryDescription, repositoryForks,
-            repositoryStars, repositoryWatchers;
-    private ProgressBar progressBar;
+    GithubDetailViewModel githubDetailViewModel;
+    @BindView(R.id.tv_repo_title)
+    TextView repositoryTitle;
+    @BindView(R.id.tv_repo_description)
+    TextView repositoryDescription;
+    @BindView(R.id.tv_forks)
+    TextView repositoryForks;
+    @BindView(R.id.tv_stars)
+    TextView repositoryStars;
+    @BindView(R.id.tv_watchers)
+    TextView repositoryWatchers;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +52,12 @@ public class GithubDetailActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.url_not_found, Toast.LENGTH_SHORT).show();
             finish();
         } else {
-            repositoryTitle = findViewById(R.id.tv_repo_title);
-            repositoryDescription = findViewById(R.id.tv_repo_description);
-            repositoryForks = findViewById(R.id.tv_forks);
-            repositoryStars = findViewById(R.id.tv_stars);
-            repositoryWatchers = findViewById(R.id.tv_watchers);
-            progressBar = findViewById(R.id.progress_bar);
-
             DaggerGithubDetailActivityComponent
                     .builder()
                     .applicationComponent(GithubApplication.get(this).getApplicationComponent())
                     .githubDetailActivityModule(new GithubDetailActivityModule(this))
                     .build().inject(this);
-
+            ButterKnife.bind(this);
             githubDetailViewModel = ViewModelProviders.of(this, githubDetailViewModelFactory)
                     .get(GithubDetailViewModel.class);
             initView();
@@ -65,8 +70,6 @@ public class GithubDetailActivity extends AppCompatActivity {
             public void onChanged(@Nullable Repository repository) {
                 if (repository != null) {
                     loadViewItems(repository);
-                } else {
-                    // TODO: 4/24/2018 handle retry
                 }
             }
         });

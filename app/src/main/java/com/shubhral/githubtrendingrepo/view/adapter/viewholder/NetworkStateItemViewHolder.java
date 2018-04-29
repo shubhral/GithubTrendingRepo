@@ -4,20 +4,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.shubhral.githubtrendingrepo.R;
 import com.shubhral.githubtrendingrepo.service.repository.NetworkState;
 import com.shubhral.githubtrendingrepo.service.repository.Status;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class NetworkStateItemViewHolder extends RecyclerView.ViewHolder {
-
-    private final ProgressBar progressBar;
-    private final TextView errorMsg;
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
+    @BindView(R.id.error_msg)
+    TextView errorMsg;
 
     public NetworkStateItemViewHolder(View itemView) {
         super(itemView);
-        progressBar = itemView.findViewById(R.id.progress_bar);
-        errorMsg = itemView.findViewById(R.id.error_msg);
+        ButterKnife.bind(this, itemView);
     }
 
     public void bindView(NetworkState networkState) {

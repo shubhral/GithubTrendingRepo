@@ -21,6 +21,7 @@ ext {
     dagger_version = "2.11"
     roomVersion = '1.0.0'
     archLifecycleVersion = '1.1.1'
+    butterknifeVersion = '8.8.1'
 }
 
 allprojects {

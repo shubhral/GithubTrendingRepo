@@ -24,21 +24,26 @@ import com.shubhral.githubtrendingrepo.view.adapter.RepositoryAdapter;
 import com.shubhral.githubtrendingrepo.view.callback.ItemClickListener;
 import com.shubhral.githubtrendingrepo.viewmodel.GithubListViewModel;
 import com.shubhral.githubtrendingrepo.viewmodel.GithubListViewModelFactory;
-
 import javax.inject.Inject;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class GithubListActivity extends AppCompatActivity implements ItemClickListener {
 
     @Inject
     GithubListViewModelFactory githubListViewModelFactory;
-    private RepositoryAdapter repositoryAdapter;
-    private GithubListViewModel listViewModel;
+    RepositoryAdapter repositoryAdapter;
+    GithubListViewModel listViewModel;
+    @BindView(R.id.rv_repo)
+    RecyclerView recyclerView;
+    @BindView(R.id.progress_bar_first_load)
+    ProgressBar progressBarFirstLoad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_github_list);
-
+        ButterKnife.bind(this);
         DaggerGithubListActivityComponent
                 .builder()
                 .applicationComponent(GithubApplication.get(this).getApplicationComponent())
@@ -50,8 +55,6 @@ public class GithubListActivity extends AppCompatActivity implements ItemClickLi
 
     private void initAdapter() {
         repositoryAdapter = new RepositoryAdapter(this);
-        RecyclerView recyclerView = findViewById(R.id.rv_repo);
-        final ProgressBar progressBarFirstLoad = findViewById(R.id.progress_bar_first_load);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(repositoryAdapter);
