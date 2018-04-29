@@ -24,6 +24,6 @@ The app has 2 screens. One shows the list of repositories & the other shows the 
 
 # TODO
 
-1. Use Data Binding & Butterknife
+1. Use Data Binding instead of Butterknife
 2. Add unit tests
 3. Add retry logic
